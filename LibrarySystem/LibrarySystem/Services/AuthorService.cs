@@ -1,0 +1,41 @@
+﻿using LibrarySystem.Models;
+using LibrarySystem.Repositories.Interfaces;
+using LibrarySystem.Services.Interfaces;
+
+namespace LibrarySystem.Services
+{
+    public class AuthorService : IAuthorService
+    {
+        private readonly IAuthorRepository _repository;
+
+        public AuthorService(IAuthorRepository repository)
+        {
+            _repository = repository;
+        }
+
+        public async Task<IEnumerable<Author>> GetAllAsync()
+        {
+            return await _repository.GetAllAsync();
+        }
+
+        public async Task<Author?> GetByIdAsync(int id)
+        {
+            return await _repository.GetByIdAsync(id);
+        }
+
+        public async Task CreateAsync(Author author)
+        {
+            await _repository.AddAsync(author);
+        }
+
+        public async Task UpdateAsync(Author author)
+        {
+            await _repository.UpdateAsync(author);
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            await _repository.DeleteAsync(id);
+        }
+    }
+}
